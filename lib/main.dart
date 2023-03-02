@@ -1,6 +1,6 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'color.dart' as colors;
+import 'widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,120 +22,89 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  List<Widget> pages = <Widget>[
+  final List<Widget> _pages = <Widget>[
     Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            flex: 10,
-            child: ListView(
-              padding: const EdgeInsets.all(8),
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                      color: colors.primaryColor(100),
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: const EdgeInsets.all(5),
-                  height: 100,
-                  child: const Center(
-                    child: Text("Entry 1"),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: colors.primaryColor(200),
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: const EdgeInsets.all(5),
-                  height: 100,
-                  child: const Center(
-                    child: Text("Entry 2"),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: colors.primaryColor(300),
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: const EdgeInsets.all(5),
-                  height: 100,
-                  child: const Center(
-                    child: Text("Entry 3"),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: colors.primaryColor(400),
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: const EdgeInsets.all(5),
-                  height: 100,
-                  child: const Center(
-                    child: Text("Entry 4"),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: colors.primaryColor(500),
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: const EdgeInsets.all(5),
-                  height: 100,
-                  child: const Center(
-                    child: Text("Entry 5"),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: colors.primaryColor(600),
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: const EdgeInsets.all(5),
-                  height: 100,
-                  child: const Center(
-                    child: Text("Entry 6"),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: colors.primaryColor(700),
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: const EdgeInsets.all(5),
-                  height: 100,
-                  child: const Center(
-                    child: Text("Entry 7"),
-                  ),
-                )
-              ],
-            ),
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          flex: 10,
+          child: ListView(
+            padding: const EdgeInsets.all(8),
+            children: const <Widget>[
+              CustomContainer(
+                text: 'Entry 1',
+                shade: 50,
+              ),
+              CustomContainer(
+                text: 'Entry 2',
+                shade: 100,
+              ),
+              CustomContainer(
+                text: 'Entry 3',
+                shade: 200,
+              ),
+              CustomContainer(
+                text: 'Entry 4',
+                shade: 300,
+              ),
+              CustomContainer(
+                text: 'Entry 5',
+                shade: 400,
+              ),
+              CustomContainer(
+                text: 'Entry 6',
+                shade: 500,
+              ),
+              CustomContainer(
+                text: 'Entry 7',
+                shade: 600,
+              ),
+              CustomContainer(
+                text: 'Entry 8',
+                shade: 700,
+              ),
+            ],
           ),
-          Container(
-            padding: const EdgeInsets.all(5),
-            child: ElevatedButton(
-              onPressed: () {},
-              child: const Text("Button"),
-              //style: ButtonStyle(shape: ),
-            ),
-          )
-        ]),
-    const Text('Search Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    const Text('My cart',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+        ),
+        Container(
+          padding: const EdgeInsets.all(5),
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text("Button"),
+          ),
+        ),
+      ],
+    ),
+    const Text(
+      'Search Page',
+      style: TextStyle(
+        fontSize: 35,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    const Text(
+      'My cart',
+      style: TextStyle(
+        fontSize: 35,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          height: 100,
-          width: 100,
+          height: 200,
+          width: 200,
           decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage('assets/images/abstract.jpg'),
-// image: NetworkImage(
-//     'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2864&q=80'),
-                fit: BoxFit.cover,
-              ),
-              color: colors.primaryColor(900),
-              //shape: BoxShape.circle,
-              borderRadius: BorderRadius.circular(90)),
+            image: const DecorationImage(
+              image: AssetImage('assets/images/abstract.jpg'),
+              fit: BoxFit.cover,
+            ),
+            color: colors.primaryColor(100),
+            shape:BoxShape.circle,
+          ),
         ),
-        const Text('Your account')
+        const Text('Your account'),
       ],
     ),
   ];
@@ -148,21 +117,34 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Flutter assignment'),
         ),
         body: Center(
-          child: pages.elementAt(_selectedIndex),
+          child: _pages.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home,
+              ),
               label: "home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(
+                Icons.search,
+              ),
               label: "search",
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart), label: "cart"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "account"),
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
+              label: "cart",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+              ),
+              label: "account",
+            ),
           ],
           type: BottomNavigationBarType.fixed,
           onTap: _onItemTapped,
@@ -171,37 +153,4 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-
-//   Center containerImage() {
-//     return Center(
-//       child: Container(
-//         height: 100,
-//         width: 100,
-//         decoration: BoxDecoration(
-//             image: const DecorationImage(
-//               image: AssetImage('assets/images/abstract.jpg'),
-// // image: NetworkImage(
-// //     'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2864&q=80'),
-//               fit: BoxFit.cover,
-//             ),
-//             color: Colors.red,
-//             //shape: BoxShape.circle,
-//             borderRadius: BorderRadius.circular(90)),
-//       ),
-//     );
-//   }
-
-//   Expanded _createContainer(int val, int shade) {
-//     return Expanded(
-//       child: Container(
-//         decoration: BoxDecoration(
-//             color: Colors.red[shade], borderRadius: BorderRadius.circular(10)),
-//         margin: const EdgeInsets.all(5),
-//         height: 100,
-//         child: Center(
-//           child: Text("Entry $val"),
-//         ),
-//       ),
-//     );
-//   }
 }
